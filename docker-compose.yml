@@ -1,0 +1,22 @@
+version: "3"
+services:
+  app:
+    container_name: my_backend 
+    image: my_backend 
+    restart: always 
+    build: ./
+    environment:
+    - spring.datasource.url=jdbc:postgresql://postgresdb:5432/pizza_app_java 
+    - spring datasource.username=postgres
+    - spring.datasource.password=test
+  ports:
+    - "3000:3000"
+  depends_on:
+    - postgresdb
+
+  postgresdb:
+    image: postgres:latest 
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "test"
+      POSTGRES_ DB: "pizza_app_java"
